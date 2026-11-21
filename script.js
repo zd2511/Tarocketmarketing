@@ -1,14 +1,8 @@
-const menuButton = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.nav');
-menuButton.addEventListener('click', () => {
-  const isOpen = document.body.classList.toggle('menu-open');
-  menuButton.setAttribute('aria-expanded', String(isOpen));
-  menuButton.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-  menuButton.textContent = isOpen ? '×' : '☰';
+document.getElementById('year').textContent=new Date().getFullYear();
+// Keep keyboard and screen-reader access to all transparent navigation hotspots.
+document.querySelectorAll('.hotspot').forEach((link)=>{
+  link.addEventListener('click',()=>{
+    const target=document.querySelector(link.getAttribute('href'));
+    if(target) target.focus({preventScroll:true});
+  });
 });
-nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-  document.body.classList.remove('menu-open');
-  menuButton.setAttribute('aria-expanded', 'false');
-  menuButton.textContent = '☰';
-}));
-document.getElementById('year').textContent = new Date().getFullYear();
